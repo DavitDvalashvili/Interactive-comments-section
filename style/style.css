@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+html {
+  font-family: "Rubik", sans-serif;
+  font-size: 62.5%;
+}
+html body {
+  padding: 1.6rem 1.6rem;
+  background-color: hsl(228, 33%, 97%);
+  position: relative;
+}
+html .comment-box {
+  margin: 1.6rem 0;
+  padding: 1.6rem;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  position: relative;
+}
+html .comment-box .user {
+  gap: 1.6rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+html .comment-box .user img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+html .comment-box .user h2 {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(212, 24%, 26%);
+}
+html .comment-box .user p {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(211, 10%, 45%);
+}
+html .comment-box .content {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(211, 10%, 45%);
+  margin: 1.6rem 0;
+}
+html .comment-box .vote-box {
+  width: 10rem;
+  height: 4rem;
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  background-color: hsl(228, 33%, 97%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(238, 40%, 52%);
+}
+html .comment-box .vote-box .plus, html .comment-box .vote-box .minus {
+  font-size: 1.8rem;
+  color: hsl(239, 57%, 85%);
+}
+html .comment-box .interaction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: capitalize;
+  color: hsl(238, 40%, 52%);
+  position: absolute;
+  right: 1.6rem;
+  left: unset;
+  top: unset;
+  bottom: 2.4rem;
+}
+html .comment-box .interaction img {
+  margin-right: 0.8rem;
+}
+html .comment-box .interaction .delete {
+  color: hsl(358, 79%, 66%);
+}
+html .new-comment {
+  background-color: hsl(0, 0%, 100%);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  padding: 1.6rem 1.6rem 1.3rem 1.6rem;
+  position: relative;
+}
+html .new-comment #textArea {
+  height: 9.6rem;
+  border-radius: 0.8rem;
+  border: 1px solid hsl(223, 19%, 93%);
+  padding: 1.2rem 2.4rem;
+  resize: none;
+  margin-bottom: 1.6rem;
+}
+html .new-comment #textArea::-moz-placeholder {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(211, 10%, 45%);
+}
+html .new-comment #textArea::placeholder {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(211, 10%, 45%);
+}
+html .new-comment button {
+  width: 10.4rem;
+  height: 4.8rem;
+  background-color: hsl(238, 40%, 52%);
+  border-radius: 0.8rem;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: uppercase;
+  color: hsl(0, 0%, 100%);
+  margin-left: auto;
+}
+html .new-comment img {
+  width: 3.2rem;
+  height: 3.2rem;
+  position: absolute;
+  right: unset;
+  left: 1.6rem;
+  top: unset;
+  bottom: 2.1rem;
+}
+html .indented {
+  padding-left: 1.6rem;
+  border-left: solid 2px hsl(223, 19%, 93%);
+}
+html #delete-comment {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  right: 0rem;
+  left: unset;
+  top: 0rem;
+  bottom: unset;
+  display: flex;
+  justify-content: center;
+  padding: 1.6rem;
+}
+html #delete-comment > div {
+  height: 22.4rem;
+  border-radius: 0.8rem;
+  background-color: hsl(0, 0%, 100%);
+  opacity: 100%;
+  max-width: 34.3rem;
+  margin-top: 22.3rem;
+}/*# sourceMappingURL=style.css.map */

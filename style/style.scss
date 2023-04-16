@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+//colors
+$Moderate-blue: hsl(238, 40%, 52%);
+$Soft-Red: hsl(358, 79%, 66%);
+$Light-grayish-blue: hsl(239, 57%, 85%);
+$Pale-red: hsl(357, 100%, 86%);
+$Dark-blue: hsl(212, 24%, 26%);
+$Grayish-Blue: hsl(211, 10%, 45%);
+$Light-gray: hsl(223, 19%, 93%);
+$Very-light-gray: hsl(228, 33%, 97%);
+$White: hsl(0, 0%, 100%);
+
+// font weight
+$light: 400;
+$bold: 500;
+$bolder: 700;
+
+//font-size
+$font-size: 1.6rem;
+
+//mixins
+@mixin flexProperty ($horizontal,$vertical) {
+    justify-content: $horizontal;
+    align-items: $vertical;
+}
+
+@mixin dimensions ($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin absolute ($right, $left, $top, $bottom) {
+    right: $right;
+    left: $left;
+    top: $top;
+    bottom: $bottom;
+}
+@mixin textStyle ($weight, $size, $height, $spacing, $transform, $color) {
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $height;
+    letter-spacing: $spacing;
+    text-transform: $transform;
+    color: $color;
+}
+html{
+    font-family: 'Rubik', sans-serif;
+    font-size: 62.5%;
+    body {
+        padding: 1.6rem 1.6rem;
+        background-color: $Very-light-gray;
+        position: relative;
+    }
+    .comment-box{
+        margin: 1.6rem 0;
+        padding: 1.6rem;
+        background-color: $White;
+        border-radius: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        @include flexProperty(center,left);
+        position: relative;
+        .user {
+            gap: 1.6rem;
+            display: flex;
+            @include flexProperty(left,center);
+            img {
+                @include dimensions(3.2rem, 3.2rem);
+            }
+            h2 {
+                @include textStyle($bold, $font-size, 1.9rem, unset, unset,$Dark-blue);
+            }
+            p{
+                @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
+            }
+        }
+        .content {
+            @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
+            margin: 1.6rem 0;
+        }
+        .vote-box {
+            @include dimensions(10rem, 4rem);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            background-color: $Very-light-gray;
+            display: flex;
+            @include flexProperty(center,center);
+            gap: 1rem;
+            @include textStyle($bold, $font-size, 1.9rem, unset, unset, $Moderate-blue);
+            .plus, .minus {
+                font-size: 1.8rem;
+                color: $Light-grayish-blue;
+            }
+        }
+        .interaction {
+            display: flex;
+            @include flexProperty(center,center);
+            gap: 1.6rem;
+            @include textStyle($bold, $font-size, 2.4rem, unset, capitalize, $Moderate-blue);
+            position: absolute;
+            @include absolute(1.6rem, unset, unset, 2.4rem);
+            img {
+                margin-right: 0.8rem;
+            }
+            .delete {
+                color: $Soft-Red;
+            }
+        }  
+    }
+    .new-comment {
+        background-color: $White;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.8rem;
+        padding: 1.6rem 1.6rem 1.3rem 1.6rem;
+        position: relative;
+        #textArea{
+            height: 9.6rem;
+            border-radius: 0.8rem;
+            border: 1px solid $Light-gray;
+            padding: 1.2rem 2.4rem;
+            resize: none;
+            margin-bottom: 1.6rem;
+            &::placeholder {
+                @include textStyle($light, $font-size, 2.4rem, unset, unset, $Grayish-Blue);
+            }
+        }
+        button {
+            @include dimensions(10.4rem, 4.8rem);
+            background-color: $Moderate-blue;
+            border-radius: 0.8rem;
+            @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
+            margin-left: auto;
+        }
+        img {
+            @include dimensions(3.2rem, 3.2rem);
+            position: absolute;
+            @include absolute(unset, 1.6rem, unset, 2.1rem);
+        }
+    }
+    .indented {
+        padding-left: 1.6rem;
+        border-left: solid 2px $Light-gray;
+    }
+    #delete-comment {
+        position: absolute;
+        @include dimensions(100vw, 100%);
+        background-color: rgba(0,0,0, 0.7);
+        //mix-blend-mode: normal;
+        @include absolute(0rem,unset,0rem,unset);
+        display: flex;
+        justify-content: center;
+        padding: 1.6rem;
+        > div {
+            height: 22.4rem;
+            border-radius: 0.8rem;
+            background-color: $White;
+            opacity: 100%;
+            max-width: 34.3rem;
+            margin-top: 22.3rem;
+        }
+
+    }
+    
+}
