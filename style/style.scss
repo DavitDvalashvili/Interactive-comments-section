@@ -48,7 +48,8 @@ html{
     font-family: 'Rubik', sans-serif;
     font-size: 62.5%;
     body {
-        padding: 1.6rem 1.6rem;
+        padding: 1.6rem 3.2rem;
+        padding-bottom: 3.2rem;
         background-color: $Very-light-gray;
         position: relative;
     }
@@ -139,7 +140,7 @@ html{
             @include absolute(unset, 1.6rem, unset, 2.1rem);
         }
     }
-    .indented {
+    .comment-reply {
         padding-left: 1.6rem;
         border-left: solid 2px $Light-gray;
     }
@@ -153,14 +154,114 @@ html{
         justify-content: center;
         padding: 1.6rem;
         > div {
-            height: 22.4rem;
+            position: sticky;
+            top: 22.3rem;
+            height: fit-content;
             border-radius: 0.8rem;
             background-color: $White;
             opacity: 100%;
             max-width: 34.3rem;
-            margin-top: 22.3rem;
+            padding: 2.4rem;
+            h3 {
+                @include textStyle($bold, 2rem, 2.4rem, unset, unset, $Dark-blue);
+            }
+            p {
+                margin: 1.6rem 0;
+                @include textStyle($light, 1.6rem, 2.4rem, unset, unset, $Grayish-Blue);
+            }
+            .buttons {
+                display: flex;
+                @include flexProperty(center, center);
+                gap: 1.2rem;
+                button {
+                    @include dimensions(13.8rem, 4.8rem);
+                    border-radius: 0.8rem;
+                    background-color: $Grayish-Blue;
+                    @include textStyle($bolder, 1.6rem, 2.4rem, unset, uppercase, $White);
+                }
+                #yes {
+                    background-color: $Soft-Red;
+                }
+            }
         }
-
+        display: none;
     }
-    
+}
+
+@media (min-width: 1024px) {
+    html{
+        body {
+            padding: 4.2rem 3.2rem;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .comment-box{
+            margin: 1rem 0;
+            padding: 2.4rem;
+            max-width: 73rem;
+            gap: 2.4rem;
+            flex-direction: row-reverse;
+            .vote-box {
+                @include dimensions(4rem, 10rem);
+                flex-direction: column;
+            }
+            .interaction {
+                gap: 2.389rem;
+                @include absolute(2.4rem, unset, 2.8rem, unset);
+            }  
+        }
+        .comment-reply {
+            padding-left: 1.6rem;
+            border-left: solid 2px $Light-gray;
+            margin-left: 4.3rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding-left: 4.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            .comment-box {
+                width: 64.2rem;
+                margin: 0;
+            }
+        }
+        .new-comment {
+            flex-direction: row;
+            gap: 1.6rem;
+            padding: 2.4rem;
+            width: 100%;
+            max-width: 73rem;
+            position: unset;
+            margin-top: 1rem;
+            #textArea{
+                margin-bottom: unset;
+                width: 50.6rem;
+            }
+            button {
+                margin-left: unset;
+            }
+            img {
+                position: unset;
+            }
+        }
+        #delete-comment {
+            > div {
+                top: 28.6rem;
+                max-width: 40rem;
+                margin-top: unset;
+                padding: 3.2rem;
+                p {
+                    margin: 2rem 0;
+                }
+                .buttons {
+                    gap: 1.4rem;
+                    button {
+                        @include dimensions(16.1rem, 4.8rem);
+                    }
+                }
+            }
+            display: none;
+        }
+    }
 }
