@@ -205,7 +205,7 @@ html{
     }
     #delete-comment {
         position: absolute;
-        @include dimensions(100vw, 100%);
+        @include dimensions(100vw, 100vh);
         background-color: rgba(0,0,0, 0.7);
         //mix-blend-mode: normal;
         @include absolute(0rem,unset,0rem,unset);

@@ -18,7 +18,7 @@
             <h2 class="user-name">amyrobson</h2>
             <p class="createdAt">1 month ago</p>
           </div>
-          <p>
+          <p class="comment-text">
             <span class="tagname"></span> <span class="content">Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.</span>
           </p>
         </div>
@@ -43,7 +43,7 @@
             <h2 class="user-name">maxblagun</h2>
             <p class="createdAt">2 weeks ago</p>
           </div>
-          <p>
+          <p class="comment-text">
             <span class="tagname"></span> <span class="content">Woah, your project looks awesome! How long have you been coding for? I’m still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!</span>
           </p>
         </div>
@@ -68,7 +68,7 @@
             <h2 class="user-name">ramsesmiron</h2>
             <p class="createdAt">1 week ago</p>
           </div>
-          <p>
+          <p class="comment-text">
             <span class="tagName">@maxblagun</span> <span class="content">If you’re still new, I’d recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It’s very tempting to jump ahead but lay a solid foundation first.</span>
           </p>
         </div>
@@ -85,7 +85,7 @@
         </div>
       </div>
     </div>
-    
+    <!-- users comment -->
     <div class="container target-comment reply-container">
       <div class="comment-box">
         <div class="comment">
@@ -95,7 +95,7 @@
             <span class="you">you</span>
             <p class="createdAt">2 days ago</p>
           </div>
-          <p>
+          <p class="comment-text">
             <span class="tagName">@ramsesmiron</span> <span class="content">I couldn’t agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.</span>
           </p>
         </div>
@@ -116,18 +116,18 @@
         </div>
       </div>
     </div>
-
+    <!-- user writes new comment on this div -->
     <div class="new-comment">
       <img src="./images/avatars/image-juliusomo.png" alt="juliusomo">
       <textarea class="textArea" placeholder="Add a comment…"></textarea>
       <button type="submit" class="submit">send</button>
     </div>
-
+    <!-- div for editing comment -->
     <div class="edit-container">
       <textArea class="editArea"></textArea>
-      <button class="updateButto">update</button>
+      <button class="updateBtn">update</button>
     </div>
-    
+    <!-- div for deleting comment-->
     <div id="delete-comment">
       <div>
         <h3>Delete comment</h3>

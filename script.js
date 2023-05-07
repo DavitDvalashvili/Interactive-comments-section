@@ -25,8 +25,10 @@ sendButton.addEventListener("click", (event) => {
     }
     removeCommentFunction();
     editFunction();
+    rateComment()
 })
 
+// changes copied elements content
 function resetData(target, event) {
     target.classList.remove("target-comment");
     target.classList.remove("reply-container");
@@ -62,7 +64,7 @@ replyButtons.forEach(replyButton => {
     })
 })
 
-
+// displays reply comment on the screen
 function submitReply() {
     const replyBox = document.querySelector(".new-reply");
     replyBox.querySelector(".submit").addEventListener("click", (event) => {
@@ -78,6 +80,7 @@ function submitReply() {
         }
         removeCommentFunction();
         editFunction();
+        rateComment()
     })
 }
 
@@ -111,10 +114,11 @@ function submitDelete(targetElement) {
 }
 
 
-
+// function for editing comment
 function editFunction() {
     const editButtons = document.querySelectorAll(".edit");
     editButtons.forEach(editBtn => {
+        let editComment;
         editBtn.addEventListener("click",  (event) => {
             let editTarget;
             if(event.target.classList.contains("edit")) {
@@ -122,32 +126,57 @@ function editFunction() {
             } else {
                 editTarget = event.target.parentNode;
             }
-
-            let editComment
             if(!active.editCommentActive){
                 active.editCommentActive = true;
                 const editTemplate = document.querySelector(".edit-container");
-                editTarget.parentNode.parentNode.querySelector(".tagName").parentNode.style.display = "none";
+                const userElement = editTarget.parentNode.parentNode.querySelector(".user");
+                editTarget.parentNode.parentNode.querySelector(".comment-text").style.display = "none";
                 editComment = editTemplate.cloneNode(true);
                 const parentElement = editTarget.parentNode.parentNode.querySelector(".comment");
                 parentElement.appendChild(editComment);
-                parentElement.insertBefore(editTarget.parentNode.parentNode.querySelector(".user"), editComment);
+                userElement.insertAdjacentElement("afterend", editComment);
                 editComment.style.display = "flex";
+                editComment.querySelector("textArea").value = editTarget.parentNode.parentNode.querySelector(".content").textContent;
             } else {
-                //editComment.remove();
-                event.target.parentNode.parentElement.querySelector(".edit-container").remove();
-                editTarget.parentNode.parentNode.querySelector(".tagName").parentNode.style.display = "block";
                 active.editCommentActive = false;
+                editComment.remove();
+                editTarget.parentNode.parentNode.querySelector(".comment-text").style.display = "block";
             }
-
-
-
+            updateComment(editComment, editTarget);
         })
     })
 }
 
 editFunction();
 
+// edit comment
+function updateComment(comment, target){
+    const updateButtons = document.querySelectorAll(".updateBtn")
+    updateButtons.forEach(updateButton => {
+        updateButton.addEventListener("click", (e) => {
+            e.target.parentNode.parentNode.querySelector(".content").textContent = e.target.previousElementSibling.value;
+            active.editCommentActive = false;
+            comment.remove();
+            target.parentNode.parentNode.querySelector(".comment-text").style.display = "block";
+        })
+    })
+}
+
+// change score of the comment.
+function rateComment() {
+    const scoreButtons = document.querySelectorAll(".vote-box span");
+    scoreButtons.forEach(scoreButton => {
+        scoreButton.addEventListener("click", (e)=> {
+            if(e.target.classList.contains("plus")) {
+                e.target.nextElementSibling.textContent = parseInt(e.target.nextElementSibling.textContent)+1;
+            } else if(e.target.classList.contains("minus")) {
+                e.target.previousElementSibling.textContent = parseInt(e.target.previousElementSibling.textContent)-1;
+            }
+        })
+    })
+}
+
+rateComment();
 
 
 
@@ -155,91 +184,4 @@ editFunction();
 
 
 
-
-
-
-
-
-
-
-
-// const replyButtons = document.querySelectorAll('.reply');
-// let replyArea;
-// replyButtons.forEach(replyButton => {
-//     replyButton.addEventListener("click", (e) => {
-//         let replyTarget;
-//         if(e.target.parentNode.parentNode.classList.contains("comment-box")){
-//             replyTarget = e.target.parentNode.parentNode;
-//         } else {
-//             replyTarget = e.target.parentNode.parentNode.parentNode;
-//             //replyArea.style.width = "642px"
-//         }
-//         replyTarget.classList.add("reply-target");
-//         replyButton.classList.toggle("active");
-//         if(replyButton.classList.contains("active")){
-//             displayReplyArea();
-//         } else {
-//             replyArea.remove();
-//         }
-//         replyTarget.classList.remove("reply-target");
-//     })
-// })
-
-// //displays new area for reply on the screen
-// function displayReplyArea() {
-//     const replyElement = document.querySelector(".reply-target");
-//     replyArea = addComment.cloneNode(true);
-//     body.appendChild(replyArea);
-//     replyElement.insertAdjacentElement('afterend', replyArea);
-//     replyArea.lastElementChild.textContent = "reply"
-//     replyArea.lastElementChild.classList.add("submit-reply");
-//     replyArea.lastElementChild.classList.remove("send");
-//     if(replyArea.parentNode.classList.contains("comment-reply") && window.innerWidth > 1024){
-//         replyArea.style.width = "642px"
-//     }
-//     submitReply();
-// }
-
-
-// //submit reply
-// let newReplyBox;
-// function submitReply() {
-//     const replyBox = document.querySelector(".initial-reply-box")
-//     const submitReplies = document.querySelectorAll(".submit-reply");
-//     submitReplies.forEach(submitReply => {
-//         submitReply.addEventListener("click", (e) => {
-//             if(!e.target.parentNode.parentNode.classList.contains("comment-reply")) {
-//                 if(submitReply.previousElementSibling.value !== ""){
-//                     newReplyBox = replyBox.cloneNode(true);
-//                     submitReply.parentNode.parentNode.appendChild(newReplyBox);
-//                     submitReply.parentNode.parentNode.insertBefore(newReplyBox, replyArea);
-//                     newReplyBox.firstElementChild.remove();
-//                     newReplyBox.classList.remove("initial-reply-box");
-//                     console.log(newReplyBox);
-//                     newReplyBox.querySelector(".content").textContent = submitReply.previousElementSibling.value;
-//                     newReplyBox.querySelector(".createdAt").textContent = "just now"
-//                     newReplyBox.querySelector(".score").textContent = 0;
-//                 }
-//             } else {
-//                 if(submitReply.previousElementSibling.value !== ""){
-//                     const userName = submitReply.parentNode.previousElementSibling.querySelector(".user-name");
-//                     let newReply = replyBox.lastElementChild.cloneNode(true);
-//                     e.target.parentNode.parentNode.appendChild(newReply);
-//                     newReply.querySelector(".content").textContent = submitReply.previousElementSibling.value;
-//                     //add tags in comment;
-//                     let tagName = document.createElement("span");
-//                     tagName.textContent = "@" + userName.textContent+ " ";
-//                     newReply.querySelector(".content").appendChild(tagName);
-//                     newReply.querySelector(".content").insertBefore(tagName, newReply.querySelector(".content").firstChild);
-//                     //reset time and score
-//                     newReply.querySelector(".createdAt").textContent = "just now"
-//                     newReply.querySelector(".score").textContent = 0;
-                    
-
-//                 }
-//             }
-//             replyArea.remove();
-//         })
-//     })
-// }
 
