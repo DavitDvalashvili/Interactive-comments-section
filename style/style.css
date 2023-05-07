@@ -21,6 +21,7 @@ html .comment-box {
   position: relative;
 }
 html .comment-box .user {
+  margin-bottom: 1.5rem;
   gap: 1.6rem;
   display: flex;
   justify-content: left;
@@ -46,6 +47,16 @@ html .comment-box .user p {
   text-transform: unset;
   color: hsl(211, 10%, 45%);
 }
+html .comment-box .user .you {
+  width: 3.9rem;
+  height: 1.9rem;
+  border-radius: 0.2rem;
+  background-color: hsl(238, 40%, 52%);
+  display: flex;
+  color: hsl(0, 0%, 100%);
+  justify-content: center;
+  align-items: center;
+}
 html .comment-box .content {
   font-weight: 400;
   font-size: 1.6rem;
@@ -53,13 +64,22 @@ html .comment-box .content {
   letter-spacing: unset;
   text-transform: unset;
   color: hsl(211, 10%, 45%);
-  margin: 1.6rem 0;
+}
+html .comment-box .tagName {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: unset;
+  color: hsl(238, 40%, 52%);
+  font-weight: 500;
 }
 html .comment-box .vote-box {
   width: 10rem;
   height: 4rem;
   border-radius: 1rem;
   padding: 1rem 1.2rem;
+  margin-top: 1.5rem;
   background-color: hsl(228, 33%, 97%);
   display: flex;
   justify-content: center;
@@ -75,6 +95,9 @@ html .comment-box .vote-box {
 html .comment-box .vote-box .plus, html .comment-box .vote-box .minus {
   font-size: 1.8rem;
   color: hsl(239, 57%, 85%);
+}
+html .comment-box .vote-box .plus:hover, html .comment-box .vote-box .minus:hover {
+  cursor: pointer;
 }
 html .comment-box .interaction {
   display: flex;
@@ -99,6 +122,9 @@ html .comment-box .interaction img {
 html .comment-box .interaction .delete {
   color: hsl(358, 79%, 66%);
 }
+html .comment-box .interaction .delete:hover, html .comment-box .interaction .reply:hover, html .comment-box .interaction .edit:hover {
+  cursor: pointer;
+}
 html .new-comment {
   background-color: hsl(0, 0%, 100%);
   display: flex;
@@ -107,7 +133,7 @@ html .new-comment {
   padding: 1.6rem 1.6rem 1.3rem 1.6rem;
   position: relative;
 }
-html .new-comment #textArea {
+html .new-comment .textArea {
   height: 9.6rem;
   border-radius: 0.8rem;
   border: 1px solid hsl(223, 19%, 93%);
@@ -115,7 +141,7 @@ html .new-comment #textArea {
   resize: none;
   margin-bottom: 1.6rem;
 }
-html .new-comment #textArea::-moz-placeholder {
+html .new-comment .textArea::-moz-placeholder {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2.4rem;
@@ -123,13 +149,20 @@ html .new-comment #textArea::-moz-placeholder {
   text-transform: unset;
   color: hsl(211, 10%, 45%);
 }
-html .new-comment #textArea::placeholder {
+html .new-comment .textArea::placeholder {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2.4rem;
   letter-spacing: unset;
   text-transform: unset;
   color: hsl(211, 10%, 45%);
+}
+html .new-comment .textArea:hover {
+  border: solid 1px hsl(238, 40%, 52%);
+  cursor: pointer;
+}
+html .new-comment .textArea:focus {
+  outline: none;
 }
 html .new-comment button {
   width: 10.4rem;
@@ -144,6 +177,9 @@ html .new-comment button {
   color: hsl(0, 0%, 100%);
   margin-left: auto;
 }
+html .new-comment button:hover {
+  cursor: pointer;
+}
 html .new-comment img {
   width: 3.2rem;
   height: 3.2rem;
@@ -153,9 +189,45 @@ html .new-comment img {
   top: unset;
   bottom: 2.1rem;
 }
-html .comment-reply {
+html .reply-container {
   padding-left: 1.6rem;
   border-left: solid 2px hsl(223, 19%, 93%);
+}
+html .edit-container {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+}
+html .edit-container .editArea {
+  width: 100%;
+  height: 9.6rem;
+  border-radius: 0.8rem;
+  border: 1px solid hsl(223, 19%, 93%);
+  padding: 1.2rem 2.4rem;
+  resize: none;
+  margin-bottom: 1.6rem;
+}
+html .edit-container .editArea:focus {
+  outline: none;
+}
+html .edit-container .editArea:hover {
+  border: solid 1px hsl(238, 40%, 52%);
+  cursor: pointer;
+}
+html .edit-container button {
+  width: 10.4rem;
+  height: 4.8rem;
+  background-color: hsl(238, 40%, 52%);
+  border-radius: 0.8rem;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: unset;
+  text-transform: uppercase;
+  color: hsl(0, 0%, 100%);
+}
+html .edit-container button:hover {
+  cursor: pointer;
 }
 html #delete-comment {
   position: absolute;
@@ -217,7 +289,7 @@ html #delete-comment > div .buttons button {
   text-transform: uppercase;
   color: hsl(0, 0%, 100%);
 }
-html #delete-comment > div .buttons #yes {
+html #delete-comment > div .buttons .yes {
   background-color: hsl(358, 79%, 66%);
 }
 
@@ -228,26 +300,29 @@ html #delete-comment > div .buttons #yes {
     align-items: center;
     flex-direction: column;
   }
-  html .comment-box {
+  html .container .comment-box {
     margin: 1rem 0;
     padding: 2.4rem;
     max-width: 73rem;
     gap: 2.4rem;
     flex-direction: row-reverse;
   }
-  html .comment-box .vote-box {
+  html .container .comment-box .vote-box {
     width: 4rem;
     height: 10rem;
     flex-direction: column;
   }
-  html .comment-box .interaction {
+  html .container .comment-box .interaction {
     gap: 2.389rem;
     right: 2.4rem;
     left: unset;
     top: 2.8rem;
     bottom: unset;
   }
-  html .comment-reply {
+  html .container .comment-box .comment {
+    width: 61.8rem;
+  }
+  html .reply-container {
     padding-left: 1.6rem;
     border-left: solid 2px hsl(223, 19%, 93%);
     margin-left: 4.3rem;
@@ -258,9 +333,12 @@ html #delete-comment > div .buttons #yes {
     flex-direction: column;
     gap: 2rem;
   }
-  html .comment-reply .comment-box {
+  html .reply-container .comment-box {
     width: 64.2rem;
     margin: 0;
+  }
+  html .reply-container .comment-box .comment {
+    width: 53rem;
   }
   html .new-comment {
     flex-direction: row;
@@ -271,7 +349,7 @@ html #delete-comment > div .buttons #yes {
     position: unset;
     margin-top: 1rem;
   }
-  html .new-comment #textArea {
+  html .new-comment .textArea {
     margin-bottom: unset;
     width: 50.6rem;
   }

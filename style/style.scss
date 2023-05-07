@@ -63,6 +63,7 @@ html{
         @include flexProperty(center,left);
         position: relative;
         .user {
+            margin-bottom: 1.5rem;
             gap: 1.6rem;
             display: flex;
             @include flexProperty(left,center);
@@ -72,18 +73,30 @@ html{
             h2 {
                 @include textStyle($bold, $font-size, 1.9rem, unset, unset,$Dark-blue);
             }
-            p{
+            p {
                 @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
+            }
+            .you {
+                @include dimensions(3.9rem, 1.9rem);
+                border-radius: 0.2rem;
+                background-color: $Moderate-blue;
+                display: flex;
+                color: $White;
+                @include flexProperty(center,center)
             }
         }
         .content {
             @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
-            margin: 1.6rem 0;
+        }
+        .tagName {
+            @include textStyle($light, $font-size, 2.4rem, unset, unset,$Moderate-blue);
+            font-weight: $bold;
         }
         .vote-box {
             @include dimensions(10rem, 4rem);
             border-radius: 1rem;
             padding: 1rem 1.2rem;
+            margin-top: 1.5rem;
             background-color: $Very-light-gray;
             display: flex;
             @include flexProperty(center,center);
@@ -92,6 +105,9 @@ html{
             .plus, .minus {
                 font-size: 1.8rem;
                 color: $Light-grayish-blue;
+            }
+            .plus:hover, .minus:hover {
+                cursor: pointer;
             }
         }
         .interaction {
@@ -107,6 +123,9 @@ html{
             .delete {
                 color: $Soft-Red;
             }
+            .delete:hover, .reply:hover, .edit:hover {
+                cursor: pointer;
+            }
         }  
     }
     .new-comment {
@@ -116,7 +135,7 @@ html{
         border-radius: 0.8rem;
         padding: 1.6rem 1.6rem 1.3rem 1.6rem;
         position: relative;
-        #textArea{
+        .textArea {
             height: 9.6rem;
             border-radius: 0.8rem;
             border: 1px solid $Light-gray;
@@ -127,6 +146,13 @@ html{
                 @include textStyle($light, $font-size, 2.4rem, unset, unset, $Grayish-Blue);
             }
         }
+        .textArea:hover{
+            border: solid 1px $Moderate-blue;
+            cursor: pointer;
+        }
+        .textArea:focus {
+            outline: none;
+        }
         button {
             @include dimensions(10.4rem, 4.8rem);
             background-color: $Moderate-blue;
@@ -134,15 +160,48 @@ html{
             @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
             margin-left: auto;
         }
+        button:hover {
+            cursor: pointer
+        }
         img {
             @include dimensions(3.2rem, 3.2rem);
             position: absolute;
             @include absolute(unset, 1.6rem, unset, 2.1rem);
         }
     }
-    .comment-reply {
+    .reply-container {
         padding-left: 1.6rem;
         border-left: solid 2px $Light-gray;
+    }
+    .edit-container {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        .editArea {
+            width: 100%;
+            height: 9.6rem;
+            border-radius: 0.8rem;
+            border: 1px solid $Light-gray;
+            padding: 1.2rem 2.4rem;
+            resize: none;
+            margin-bottom: 1.6rem;
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                border: solid 1px $Moderate-blue;
+                cursor: pointer;
+            }
+        }
+        button {
+            @include dimensions(10.4rem, 4.8rem);
+            background-color: $Moderate-blue;
+            border-radius: 0.8rem;
+            @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
+            &:hover {
+            cursor: pointer
+            }
+        }
     }
     #delete-comment {
         position: absolute;
@@ -179,7 +238,7 @@ html{
                     background-color: $Grayish-Blue;
                     @include textStyle($bolder, 1.6rem, 2.4rem, unset, uppercase, $White);
                 }
-                #yes {
+                .yes {
                     background-color: $Soft-Red;
                 }
             }
@@ -196,22 +255,27 @@ html{
             align-items: center;
             flex-direction: column;
         }
-        .comment-box{
-            margin: 1rem 0;
-            padding: 2.4rem;
-            max-width: 73rem;
-            gap: 2.4rem;
-            flex-direction: row-reverse;
-            .vote-box {
-                @include dimensions(4rem, 10rem);
-                flex-direction: column;
+        .container {
+            .comment-box{
+                margin: 1rem 0;
+                padding: 2.4rem;
+                max-width: 73rem;
+                gap: 2.4rem;
+                flex-direction: row-reverse;
+                .vote-box {
+                    @include dimensions(4rem, 10rem);
+                    flex-direction: column;
+                }
+                .interaction {
+                    gap: 2.389rem;
+                    @include absolute(2.4rem, unset, 2.8rem, unset);
+                }
+                .comment {
+                    width: 61.8rem;
+                }
             }
-            .interaction {
-                gap: 2.389rem;
-                @include absolute(2.4rem, unset, 2.8rem, unset);
-            }  
         }
-        .comment-reply {
+        .reply-container {
             padding-left: 1.6rem;
             border-left: solid 2px $Light-gray;
             margin-left: 4.3rem;
@@ -224,6 +288,9 @@ html{
             .comment-box {
                 width: 64.2rem;
                 margin: 0;
+                .comment {
+                    width: 53rem;
+                }
             }
         }
         .new-comment {
@@ -234,7 +301,7 @@ html{
             max-width: 73rem;
             position: unset;
             margin-top: 1rem;
-            #textArea{
+            .textArea{
                 margin-bottom: unset;
                 width: 50.6rem;
             }
