@@ -106,7 +106,9 @@ function submitDelete(targetElement) {
     buttons.forEach(btn => {
         btn.addEventListener("click", (event) => {
             if(event.target.classList.contains("yes")) {
-                targetElement.remove();  
+                targetElement.style.margin = "0"
+                targetElement.style.padding = "0"
+                targetElement.remove();
             }
             deleteComment.style.display = "none";
         })
