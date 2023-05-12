@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
 //colors
 $Moderate-blue: hsl(238, 40%, 52%);
@@ -20,315 +20,362 @@ $bolder: 700;
 $font-size: 1.6rem;
 
 //mixins
-@mixin flexProperty ($horizontal,$vertical) {
-    justify-content: $horizontal;
-    align-items: $vertical;
+@mixin flexProperty($horizontal, $vertical) {
+  justify-content: $horizontal;
+  align-items: $vertical;
 }
 
-@mixin dimensions ($width, $height) {
-    width: $width;
-    height: $height;
+@mixin dimensions($width, $height) {
+  width: $width;
+  height: $height;
 }
 
-@mixin absolute ($right, $left, $top, $bottom) {
-    right: $right;
-    left: $left;
-    top: $top;
-    bottom: $bottom;
+@mixin absolute($right, $left, $top, $bottom) {
+  right: $right;
+  left: $left;
+  top: $top;
+  bottom: $bottom;
 }
-@mixin textStyle ($weight, $size, $height, $spacing, $transform, $color) {
-    font-weight: $weight;
-    font-size: $size;
-    line-height: $height;
-    letter-spacing: $spacing;
-    text-transform: $transform;
-    color: $color;
+@mixin textStyle($weight, $size, $height, $spacing, $transform, $color) {
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  letter-spacing: $spacing;
+  text-transform: $transform;
+  color: $color;
 }
-html{
-    font-family: 'Rubik', sans-serif;
-    font-size: 62.5%;
-    body {
-        padding: 1.6rem 3.2rem;
-        padding-bottom: 3.2rem;
-        background-color: $Very-light-gray;
-        position: relative;
+html {
+  font-family: "Rubik", sans-serif;
+  font-size: 62.5%;
+  body {
+    padding: 1.6rem 3.2rem;
+    padding-bottom: 3.2rem;
+    background-color: $Very-light-gray;
+    position: relative;
+  }
+  .comment-box {
+    margin: 1.6rem 0;
+    padding: 1.6rem;
+    background-color: $White;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    @include flexProperty(center, left);
+    position: relative;
+    .user {
+      margin-bottom: 1.5rem;
+      gap: 1.6rem;
+      display: flex;
+      @include flexProperty(left, center);
+      img {
+        @include dimensions(3.2rem, 3.2rem);
+      }
+      h2 {
+        @include textStyle($bold, $font-size, 1.9rem, unset, unset, $Dark-blue);
+      }
+      p {
+        @include textStyle(
+          $light,
+          $font-size,
+          2.4rem,
+          unset,
+          unset,
+          $Grayish-Blue
+        );
+      }
+      .you {
+        @include dimensions(3.9rem, 1.9rem);
+        border-radius: 0.2rem;
+        background-color: $Moderate-blue;
+        display: flex;
+        color: $White;
+        @include flexProperty(center, center);
+      }
     }
-    .comment-box{
+    .content {
+      @include textStyle(
+        $light,
+        $font-size,
+        2.4rem,
+        unset,
+        unset,
+        $Grayish-Blue
+      );
+    }
+    .tagName {
+      @include textStyle(
+        $light,
+        $font-size,
+        2.4rem,
+        unset,
+        unset,
+        $Moderate-blue
+      );
+      font-weight: $bold;
+    }
+    .vote-box {
+      @include dimensions(10rem, 4rem);
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      margin-top: 1.5rem;
+      background-color: $Very-light-gray;
+      display: flex;
+      @include flexProperty(center, center);
+      gap: 1rem;
+      @include textStyle(
+        $bold,
+        $font-size,
+        1.9rem,
+        unset,
+        unset,
+        $Moderate-blue
+      );
+      .plus,
+      .minus {
+        font-size: 1.8rem;
+        color: $Light-grayish-blue;
+      }
+      .plus:hover,
+      .minus:hover {
+        cursor: pointer;
+      }
+    }
+    .interaction {
+      display: flex;
+      @include flexProperty(center, center);
+      gap: 1.6rem;
+      @include textStyle(
+        $bold,
+        $font-size,
+        2.4rem,
+        unset,
+        capitalize,
+        $Moderate-blue
+      );
+      position: absolute;
+      @include absolute(1.6rem, unset, unset, 2.4rem);
+      img {
+        margin-right: 0.8rem;
+      }
+      .delete {
+        color: $Soft-Red;
+      }
+      .delete:hover,
+      .reply:hover,
+      .edit:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .new-comment {
+    background-color: $White;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.8rem;
+    padding: 1.6rem 1.6rem 1.3rem 1.6rem;
+    position: relative;
+    .textArea {
+      height: 9.6rem;
+      border-radius: 0.8rem;
+      border: 1px solid $Light-gray;
+      padding: 1.2rem 2.4rem;
+      resize: none;
+      margin-bottom: 1.6rem;
+      &::placeholder {
+        @include textStyle(
+          $light,
+          $font-size,
+          2.4rem,
+          unset,
+          unset,
+          $Grayish-Blue
+        );
+      }
+    }
+    .textArea:hover {
+      border: solid 1px $Moderate-blue;
+      cursor: pointer;
+    }
+    .textArea:focus {
+      outline: none;
+    }
+    button {
+      @include dimensions(10.4rem, 4.8rem);
+      background-color: $Moderate-blue;
+      border-radius: 0.8rem;
+      @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
+      margin-left: auto;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+    img {
+      @include dimensions(3.2rem, 3.2rem);
+      position: absolute;
+      @include absolute(unset, 1.6rem, unset, 2.1rem);
+    }
+  }
+  .reply-container {
+    padding-left: 1.6rem;
+    border-left: solid 2px $Light-gray;
+  }
+  .edit-container {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    .editArea {
+      width: 100%;
+      height: 9.6rem;
+      border-radius: 0.8rem;
+      border: 1px solid $Light-gray;
+      padding: 1.2rem 2.4rem;
+      resize: none;
+      margin-bottom: 1.6rem;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        border: solid 1px $Moderate-blue;
+        cursor: pointer;
+      }
+    }
+    button {
+      @include dimensions(10.4rem, 4.8rem);
+      background-color: $Moderate-blue;
+      border-radius: 0.8rem;
+      @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  #delete-comment {
+    position: absolute;
+    @include dimensions(100vw, 100%);
+    background-color: rgba(0, 0, 0, 0.7);
+    //mix-blend-mode: normal;
+    @include absolute(0rem, unset, 0rem, unset);
+    display: flex;
+    justify-content: center;
+    padding: 1.6rem;
+    > div {
+      position: sticky;
+      top: 22.3rem;
+      height: fit-content;
+      border-radius: 0.8rem;
+      background-color: $White;
+      opacity: 100%;
+      max-width: 34.3rem;
+      padding: 2.4rem;
+      h3 {
+        @include textStyle($bold, 2rem, 2.4rem, unset, unset, $Dark-blue);
+      }
+      p {
         margin: 1.6rem 0;
-        padding: 1.6rem;
-        background-color: $White;
-        border-radius: 0.8rem;
+        @include textStyle($light, 1.6rem, 2.4rem, unset, unset, $Grayish-Blue);
+      }
+      .buttons {
         display: flex;
-        flex-direction: column;
-        @include flexProperty(center,left);
-        position: relative;
-        .user {
-            margin-bottom: 1.5rem;
-            gap: 1.6rem;
-            display: flex;
-            @include flexProperty(left,center);
-            img {
-                @include dimensions(3.2rem, 3.2rem);
-            }
-            h2 {
-                @include textStyle($bold, $font-size, 1.9rem, unset, unset,$Dark-blue);
-            }
-            p {
-                @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
-            }
-            .you {
-                @include dimensions(3.9rem, 1.9rem);
-                border-radius: 0.2rem;
-                background-color: $Moderate-blue;
-                display: flex;
-                color: $White;
-                @include flexProperty(center,center)
-            }
-        }
-        .content {
-            @include textStyle($light, $font-size, 2.4rem, unset, unset,$Grayish-Blue);
-        }
-        .tagName {
-            @include textStyle($light, $font-size, 2.4rem, unset, unset,$Moderate-blue);
-            font-weight: $bold;
-        }
-        .vote-box {
-            @include dimensions(10rem, 4rem);
-            border-radius: 1rem;
-            padding: 1rem 1.2rem;
-            margin-top: 1.5rem;
-            background-color: $Very-light-gray;
-            display: flex;
-            @include flexProperty(center,center);
-            gap: 1rem;
-            @include textStyle($bold, $font-size, 1.9rem, unset, unset, $Moderate-blue);
-            .plus, .minus {
-                font-size: 1.8rem;
-                color: $Light-grayish-blue;
-            }
-            .plus:hover, .minus:hover {
-                cursor: pointer;
-            }
-        }
-        .interaction {
-            display: flex;
-            @include flexProperty(center,center);
-            gap: 1.6rem;
-            @include textStyle($bold, $font-size, 2.4rem, unset, capitalize, $Moderate-blue);
-            position: absolute;
-            @include absolute(1.6rem, unset, unset, 2.4rem);
-            img {
-                margin-right: 0.8rem;
-            }
-            .delete {
-                color: $Soft-Red;
-            }
-            .delete:hover, .reply:hover, .edit:hover {
-                cursor: pointer;
-            }
-        }  
-    }
-    .new-comment {
-        background-color: $White;
-        display: flex;
-        flex-direction: column;
-        border-radius: 0.8rem;
-        padding: 1.6rem 1.6rem 1.3rem 1.6rem;
-        position: relative;
-        .textArea {
-            height: 9.6rem;
-            border-radius: 0.8rem;
-            border: 1px solid $Light-gray;
-            padding: 1.2rem 2.4rem;
-            resize: none;
-            margin-bottom: 1.6rem;
-            &::placeholder {
-                @include textStyle($light, $font-size, 2.4rem, unset, unset, $Grayish-Blue);
-            }
-        }
-        .textArea:hover{
-            border: solid 1px $Moderate-blue;
-            cursor: pointer;
-        }
-        .textArea:focus {
-            outline: none;
-        }
+        @include flexProperty(center, center);
+        gap: 1.2rem;
         button {
-            @include dimensions(10.4rem, 4.8rem);
-            background-color: $Moderate-blue;
-            border-radius: 0.8rem;
-            @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
-            margin-left: auto;
+          @include dimensions(13.8rem, 4.8rem);
+          border-radius: 0.8rem;
+          background-color: $Grayish-Blue;
+          @include textStyle($bolder, 1.6rem, 2.4rem, unset, uppercase, $White);
         }
-        button:hover {
-            cursor: pointer
+        .yes {
+          background-color: $Soft-Red;
         }
-        img {
-            @include dimensions(3.2rem, 3.2rem);
-            position: absolute;
-            @include absolute(unset, 1.6rem, unset, 2.1rem);
-        }
+      }
     }
-    .reply-container {
-        padding-left: 1.6rem;
-        border-left: solid 2px $Light-gray;
-    }
-    .edit-container {
-        display: none;
-        flex-direction: column;
-        align-items: flex-end;
-        .editArea {
-            width: 100%;
-            height: 9.6rem;
-            border-radius: 0.8rem;
-            border: 1px solid $Light-gray;
-            padding: 1.2rem 2.4rem;
-            resize: none;
-            margin-bottom: 1.6rem;
-            &:focus {
-                outline: none;
-            }
-            &:hover {
-                border: solid 1px $Moderate-blue;
-                cursor: pointer;
-            }
-        }
-        button {
-            @include dimensions(10.4rem, 4.8rem);
-            background-color: $Moderate-blue;
-            border-radius: 0.8rem;
-            @include textStyle($bolder, $font-size, 2.4rem, unset, uppercase, $White);
-            &:hover {
-            cursor: pointer
-            }
-        }
-    }
-    #delete-comment {
-        position: absolute;
-        @include dimensions(100vw, 100%);
-        background-color: rgba(0,0,0, 0.7);
-        //mix-blend-mode: normal;
-        @include absolute(0rem,unset,0rem,unset);
-        display: flex;
-        justify-content: center;
-        padding: 1.6rem;
-        > div {
-            position: sticky;
-            top: 22.3rem;
-            height: fit-content;
-            border-radius: 0.8rem;
-            background-color: $White;
-            opacity: 100%;
-            max-width: 34.3rem;
-            padding: 2.4rem;
-            h3 {
-                @include textStyle($bold, 2rem, 2.4rem, unset, unset, $Dark-blue);
-            }
-            p {
-                margin: 1.6rem 0;
-                @include textStyle($light, 1.6rem, 2.4rem, unset, unset, $Grayish-Blue);
-            }
-            .buttons {
-                display: flex;
-                @include flexProperty(center, center);
-                gap: 1.2rem;
-                button {
-                    @include dimensions(13.8rem, 4.8rem);
-                    border-radius: 0.8rem;
-                    background-color: $Grayish-Blue;
-                    @include textStyle($bolder, 1.6rem, 2.4rem, unset, uppercase, $White);
-                }
-                .yes {
-                    background-color: $Soft-Red;
-                }
-            }
-        }
-        display: none;
-    }
+    display: none;
+  }
 }
 
 @media (min-width: 1024px) {
-    html{
-        body {
-            padding: 4.2rem 3.2rem;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-        .container {
-            .comment-box{
-                margin: 1rem 0;
-                padding: 2.4rem;
-                max-width: 73rem;
-                gap: 2.4rem;
-                flex-direction: row-reverse;
-                .vote-box {
-                    @include dimensions(4rem, 10rem);
-                    flex-direction: column;
-                }
-                .interaction {
-                    gap: 2.389rem;
-                    @include absolute(2.4rem, unset, 2.8rem, unset);
-                }
-                .comment {
-                    width: 61.8rem;
-                }
-            }
-        }
-        .reply-container {
-            padding-left: 1.6rem;
-            border-left: solid 2px $Light-gray;
-            margin-left: 4.3rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            padding-left: 4.3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            .comment-box {
-                width: 64.2rem;
-                margin: 0;
-                .comment {
-                    width: 53rem;
-                }
-            }
-        }
-        .new-comment {
-            flex-direction: row;
-            gap: 1.6rem;
-            padding: 2.4rem;
-            width: 100%;
-            max-width: 73rem;
-            position: unset;
-            margin-top: 1rem;
-            .textArea{
-                margin-bottom: unset;
-                width: 50.6rem;
-            }
-            button {
-                margin-left: unset;
-            }
-            img {
-                position: unset;
-            }
-        }
-        #delete-comment {
-            > div {
-                top: 28.6rem;
-                max-width: 40rem;
-                margin-top: unset;
-                padding: 3.2rem;
-                p {
-                    margin: 2rem 0;
-                }
-                .buttons {
-                    gap: 1.4rem;
-                    button {
-                        @include dimensions(16.1rem, 4.8rem);
-                    }
-                }
-            }
-            display: none;
-        }
+  html {
+    body {
+      padding: 4.2rem 3.2rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
+    .container {
+      .comment-box {
+        margin: 1rem 0;
+        padding: 2.4rem;
+        max-width: 73rem;
+        gap: 2.4rem;
+        flex-direction: row-reverse;
+        .vote-box {
+          @include dimensions(4rem, 10rem);
+          flex-direction: column;
+        }
+        .interaction {
+          gap: 2.389rem;
+          @include absolute(2.4rem, unset, 2.8rem, unset);
+        }
+        .comment {
+          width: 61.8rem;
+        }
+      }
+    }
+    .reply-container {
+      padding-left: 1.6rem;
+      border-left: solid 2px $Light-gray;
+      margin-left: 4.3rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-left: 4.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      .comment-box {
+        width: 64.2rem;
+        margin: 0;
+        .comment {
+          width: 53rem;
+        }
+      }
+    }
+    .new-comment {
+      flex-direction: row;
+      gap: 1.6rem;
+      padding: 2.4rem;
+      width: 100%;
+      max-width: 73rem;
+      position: unset;
+      margin-top: 1rem;
+      .textArea {
+        margin-bottom: unset;
+        width: 50.6rem;
+      }
+      button {
+        margin-left: unset;
+      }
+      img {
+        position: unset;
+      }
+    }
+    #delete-comment {
+        @include dimensions(100vw, 100vh);
+      > div {
+        top: 28.6rem;
+        max-width: 40rem;
+        margin-top: unset;
+        padding: 3.2rem;
+        p {
+          margin: 2rem 0;
+        }
+        .buttons {
+          gap: 1.4rem;
+          button {
+            @include dimensions(16.1rem, 4.8rem);
+          }
+        }
+      }
+      display: none;
+    }
+  }
 }

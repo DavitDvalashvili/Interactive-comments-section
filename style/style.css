@@ -92,11 +92,13 @@ html .comment-box .vote-box {
   text-transform: unset;
   color: hsl(238, 40%, 52%);
 }
-html .comment-box .vote-box .plus, html .comment-box .vote-box .minus {
+html .comment-box .vote-box .plus,
+html .comment-box .vote-box .minus {
   font-size: 1.8rem;
   color: hsl(239, 57%, 85%);
 }
-html .comment-box .vote-box .plus:hover, html .comment-box .vote-box .minus:hover {
+html .comment-box .vote-box .plus:hover,
+html .comment-box .vote-box .minus:hover {
   cursor: pointer;
 }
 html .comment-box .interaction {
@@ -122,7 +124,9 @@ html .comment-box .interaction img {
 html .comment-box .interaction .delete {
   color: hsl(358, 79%, 66%);
 }
-html .comment-box .interaction .delete:hover, html .comment-box .interaction .reply:hover, html .comment-box .interaction .edit:hover {
+html .comment-box .interaction .delete:hover,
+html .comment-box .interaction .reply:hover,
+html .comment-box .interaction .edit:hover {
   cursor: pointer;
 }
 html .new-comment {
@@ -360,6 +364,8 @@ html #delete-comment > div .buttons .yes {
     position: unset;
   }
   html #delete-comment {
+    width: 100vw;
+    height: 100vh;
     display: none;
   }
   html #delete-comment > div {
